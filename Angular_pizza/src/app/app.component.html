@@ -110,7 +110,7 @@
         </div>
       </div>
       <div class="main-action">
-        <button class="btn" id="choose-pizza">Выбрать пиццу</button>
+        <button class="btn" (click)="scrollTo(productsElement)">Выбрать пиццу</button>
       </div>
     </div>
     <div class="main-image">
@@ -119,7 +119,7 @@
   </div>
 </section>
 
-<section class="products">
+<section class="products" #productsElement>
   <div class="container">
     <h2 class="products-title" id="products-title">
       Выберите свою любимую пиццу
@@ -134,14 +134,14 @@
           {{ product.description }}
         </div>
         <div class="product-action">
-          <button id="no-touch" class="btn btn-add-to-cart">В корзину</button>
+          <button id="no-touch" class="btn btn-add-to-cart" (click)="addToCart(product,orderElement)">В корзину</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="order">
+<section class="order" #orderElement>
   <div class="container">
     <div class="order-text">
       <div class="order-text-title double-title">
@@ -156,10 +156,12 @@
       </div>
     </div>
     <div class="order-form">
-      <input class="order-input" id="product-input" type="text" placeholder="Пицца">
-      <input class="order-input" type="text" id="address-input" placeholder="Адрес доставки">
-      <input class="order-input" type="text" id="phone-input" placeholder="Телефон">
-      <button class="btn" id="create-order">Оформить заказ</button>
+      <input class="order-input" id="product-input" type="text" placeholder="Пицца"
+             [(ngModel)]="formValues.productTitle">
+      <input class="order-input" type="text" id="address-input" placeholder="Адрес доставки"
+             [(ngModel)]="formValues.address">
+      <input class="order-input" type="text" id="phone-input" placeholder="Телефон" [(ngModel)]="formValues.phone">
+      <button class="btn" (click)="createOrder()">Оформить заказ</button>
     </div>
     <div class="order-image">
       <img src="assets/images/pizza.png" alt="Пицца">
