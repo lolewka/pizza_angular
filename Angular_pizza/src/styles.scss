@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: MullerBold;
+  src: url("./assets/fonts/MullerBold.otf");
+}
+
+@font-face {
+  font-family: MullerExtraBold;
+  src: url("./assets/fonts/MullerExtraBold.otf");
+}
+
+@font-face {
+  font-family: Muller;
+  src: url("./assets/fonts/MullerRegular.otf");
+}
+
+body {
+  font-family: Muller, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+/* 1024-1229*/
+@media screen and (max-width: 1229px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
