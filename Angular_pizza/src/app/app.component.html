@@ -76,18 +76,6 @@
       Выберите свою любимую пиццу
     </h2>
     <div class="products-items">
-      <div class="product" *ngFor="let product of products; let i= index;">
-        <div class="product-image">
-          <img src="assets/images/products/{{product.image}}" alt="Product pizza {{i+1}}">
-        </div>
-        <div class="product-title">{{ product.title }}</div>
-        <div class="product-text">
-          {{ product.description }}
-        </div>
-        <div class="product-action">
-          <button id="no-touch" class="btn btn-add-to-cart" (click)="addToCart(product,orderElement)">В корзину</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
