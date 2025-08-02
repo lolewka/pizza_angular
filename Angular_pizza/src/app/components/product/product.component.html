@@ -1,12 +1,13 @@
 <div class="product">
   <div class="product-image">
-    <img src="assets/images/products/{{product.image}}" alt="Product pizza {{i+1}}">
+    <img src="assets/images/products/{{product.image}}">
   </div>
   <div class="product-title">{{ product.title }}</div>
   <div class="product-text">
     {{ product.description }}
   </div>
   <div class="product-action">
-    <button id="no-touch" class="btn btn-add-to-cart" (click)="addToCart(product,orderElement)">В корзину</button>
+    <button id="no-touch" class="btn btn-add-to-cart" (click)="addProductToCart()">В корзину</button>
   </div>
 </div>
+<!--(click)="addToCart(product,orderElement)"-->
