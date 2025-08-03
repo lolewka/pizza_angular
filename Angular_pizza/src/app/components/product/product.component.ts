@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ProductType} from "../../types/product.type";
+import {TitleComponent} from "../title/title.component";
 
 @Component({
   selector: 'product',
@@ -10,7 +11,11 @@ export class ProductComponent implements OnInit {
 //Принимаем в дочернем что ушло от родительского
   @Input() product: ProductType;
   //Посылаем родителькому элементу
-  @Output() addToCartEvent: EventEmitter<ProductType> = new EventEmitter<ProductType>();
+  @Output() addToCartEvent: EventEmitter<string> = new EventEmitter<string>();
+
+//Добавляем декоратор
+  @ViewChild(TitleComponent)
+  private titleComponent!: TitleComponent;
 
   constructor() {
     this.product = {
@@ -24,7 +29,7 @@ export class ProductComponent implements OnInit {
   }
 
   addProductToCart() {
-    this.addToCartEvent.emit(this.product);
+    this.addToCartEvent.emit(this.titleComponent.toUpper());
   }
 
 }

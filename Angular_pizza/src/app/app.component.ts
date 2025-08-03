@@ -56,9 +56,9 @@ export class AppComponent {// по факту отсюда нужна делат
   }
 
   //Функция которая вызывает название продукта и подстовляет в форму
-  public addToCart(product: ProductType, target: HTMLElement): void {
+  public addToCart(title: string, target: HTMLElement): void {
     this.scrollTo(target);
-    this.formValues.productTitle = product.title;
+    this.formValues.productTitle = title;
   }
 
 //Валидация формы
