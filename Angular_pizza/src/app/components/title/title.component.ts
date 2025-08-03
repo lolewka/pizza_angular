@@ -5,20 +5,10 @@ import {Component, ContentChild, ElementRef, Input, OnInit} from '@angular/core'
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.scss']
 })
-export class TitleComponent implements OnInit {
+export class TitleComponent  {
   @Input() title: string = '';
 
-  @ContentChild('second')
-  private second!: ElementRef;
-
   constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterContentInit() {
-    // console.log(this.second);
   }
 
   //Функция котора берет текущую строку в тайтл

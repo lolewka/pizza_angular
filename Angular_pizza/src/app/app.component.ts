@@ -59,7 +59,6 @@ export class AppComponent {// по факту отсюда нужна делат
   public addToCart(title: string, target: HTMLElement): void {
     this.scrollTo(target);
     this.formValues.productTitle = title;
-    this.products = this.products.filter(item => item.title.toUpperCase() !== title.toUpperCase());
   }
 
 //Валидация формы
