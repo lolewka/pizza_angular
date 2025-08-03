@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ContentChild, ElementRef, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'custom-title',
@@ -6,7 +6,10 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./title.component.scss']
 })
 export class TitleComponent implements OnInit {
-  @Input() title: string = ''
+  @Input() title: string = '';
+
+  @ContentChild('second')
+  private second!: ElementRef;
 
   constructor() {
   }
@@ -14,11 +17,16 @@ export class TitleComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterContentInit() {
+    console.log(this.second);
+  }
+
   //Функция котора берет текущую строку в тайтл
-  toUpper(){
+  toUpper() {
     return this.title.toUpperCase();
   }
-  toLower(){
+
+  toLower() {
     return this.title.toLowerCase();
   }
 }
