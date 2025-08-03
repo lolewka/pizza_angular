@@ -2,9 +2,13 @@
   <div class="product-image">
     <img src="assets/images/products/{{product.image}}">
   </div>
-  <custom-title [title]="product.title"></custom-title>
+
+  <custom-title [title]="product.title">
+    <p>Test message</p>
+  </custom-title>
+
   <div class="product-text">{{ product.description }}</div>
-  <div class="product-action">
+  <div class="product-action" #elem>
     <button id="no-touch" class="btn btn-add-to-cart" (click)="addProductToCart()">В корзину</button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ProductType} from "../../types/product.type";
 import {TitleComponent} from "../title/title.component";
 
@@ -16,6 +16,9 @@ export class ProductComponent implements OnInit {
 //Добавляем декоратор
   @ViewChild(TitleComponent)
   private titleComponent!: TitleComponent;
+//локально
+  @ViewChild('elem')
+  private elem!: ElementRef;
 
   constructor() {
     this.product = {
@@ -26,6 +29,10 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    console.log(this.elem);
   }
 
   addProductToCart() {
