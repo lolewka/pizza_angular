@@ -96,9 +96,9 @@
       </div>
     </div>
     <div class="order-form">
-      <input class="order-input" id="product-input" type="text" placeholder="Пицца"
+      <input class="order-input" collInput id="product-input" type="text" placeholder="Пицца"
              [(ngModel)]="formValues.productTitle">
-      <input class="order-input" type="text" id="address-input" placeholder="Адрес доставки"
+      <input class="order-input" collInput type="text" id="address-input" placeholder="Адрес доставки"
              [(ngModel)]="formValues.address">
       <input class="order-input" type="text" id="phone-input" placeholder="Телефон" [(ngModel)]="formValues.phone">
       <button class="btn" (click)="createOrder()">Оформить заказ</button>
