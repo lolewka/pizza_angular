@@ -59,6 +59,7 @@ export class AppComponent {// по факту отсюда нужна делат
   public addToCart(title: string, target: HTMLElement): void {
     this.scrollTo(target);
     this.formValues.productTitle = title;
+    this.products = this.products.filter(item => item.title.toUpperCase() !== title.toUpperCase());
   }
 
 //Валидация формы
@@ -79,7 +80,7 @@ export class AppComponent {// по факту отсюда нужна делат
     alert('Спасибо за заказ! Ваш заказ будет доставлен в течении 24 часов.');
 
     //что бы поля стирались преопределим объект
-   this.formValues = {
+    this.formValues = {
       productTitle: '',
       address: '',
       phone: '',

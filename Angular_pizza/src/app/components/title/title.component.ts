@@ -18,7 +18,7 @@ export class TitleComponent implements OnInit {
   }
 
   ngAfterContentInit() {
-    console.log(this.second);
+    // console.log(this.second);
   }
 
   //Функция котора берет текущую строку в тайтл
