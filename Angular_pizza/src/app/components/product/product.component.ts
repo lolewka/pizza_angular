@@ -1,11 +1,12 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ProductType} from "../../types/product.type";
 import {TitleComponent} from "../title/title.component";
 
 @Component({
   selector: 'product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent implements OnInit {
 //Принимаем в дочернем что ушло от родительского
