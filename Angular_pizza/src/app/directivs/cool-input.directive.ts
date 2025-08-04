@@ -20,6 +20,13 @@ export class CoolInputDirective implements OnInit {
     return this._backgroundColor;
   }
 
+  private _isOnFocus: boolean = false;
+
+  @HostBinding('class.isOnFocus')
+  get getOnFocus() {
+    return this._isOnFocus;
+  }
+
   ngOnInit() {
     this.changeElementBgColor(this.coolInputDefaultBgColor)
     this.rend.setAttribute(this.el.nativeElement, 'placeholder', this.el.nativeElement.getAttribute('placeholder') + '*');
@@ -29,11 +36,13 @@ export class CoolInputDirective implements OnInit {
   @HostListener('focus')
   onFocus() {
     this.changeElementBgColor(this.coolInputFocusBgColor);
+    this._isOnFocus = true;
   }
 
   @HostListener('blur')
   onBlur() {
     this.changeElementBgColor(this.coolInputDefaultBgColor);
+    this._isOnFocus = false;
   }
 
   @HostListener('click', ['$event', '$event.target'])
