@@ -76,7 +76,8 @@
       Выберите свою любимую пиццу
     </h2>
     <div class="products-items">
-      <product *ngFor="let product of products;" [product]="product" (addToCartEvent)="addToCart($event,orderElement)"></product>
+      <product *ngFor="let product of products;" [product]="product"
+               (addToCartEvent)="addToCart($event,orderElement)"></product>
     </div>
   </div>
 </section>
@@ -96,7 +97,10 @@
       </div>
     </div>
     <div class="order-form">
-      <input class="order-input" collInput id="product-input" type="text" placeholder="Пицца"
+      <input class="order-input" collInput id="product-input" type="text"
+             [coolInputDefaultBgColor]="'gray'"
+             [coolInputFocusBgColor]="'red'"
+             placeholder="Пицца"
              [(ngModel)]="formValues.productTitle">
       <input class="order-input" collInput type="text" id="address-input" placeholder="Адрес доставки"
              [(ngModel)]="formValues.address">
