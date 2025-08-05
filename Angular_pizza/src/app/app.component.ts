@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductType} from "./types/product.type";
 
 @Component({
@@ -6,7 +6,7 @@ import {ProductType} from "./types/product.type";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {// по факту отсюда нужна делать запрос на бэкенда но так как у нас его нет, мы сделаем так
+export class AppComponent implements OnInit {// по факту отсюда нужна делать запрос на бэкенда но так как у нас его нет, мы сделаем так
   public products: ProductType[] = [
     {
       image: 'pizza-1.png',
@@ -94,6 +94,17 @@ export class AppComponent {// по факту отсюда нужна делат
       address: '',
       phone: '',
     }
+
+  }
+
+  lateDate: Promise<string> | null = null;
+
+  ngOnInit() {
+    this.lateDate = new Promise<string>(function (resolve) {
+      setTimeout(() => {
+        resolve('Hello');
+      }, 3000)
+    })
   }
 
 }
