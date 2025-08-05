@@ -10,6 +10,7 @@ import { ProductComponent } from './components/product/product.component';
 import { TitleComponent } from './components/title/title.component';
 import { CoolInputDirective } from './directivs/cool-input.directive';
 import { ChickenDescriptionPipe } from './pipes/chicken-description.pipe';
+import { WordUpperPipe } from './pipes/word-upper.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ChickenDescriptionPipe } from './pipes/chicken-description.pipe';
     ProductComponent,
     TitleComponent,
     CoolInputDirective,
-    ChickenDescriptionPipe
+    ChickenDescriptionPipe,
+    WordUpperPipe
   ],
   imports: [
     BrowserModule,
