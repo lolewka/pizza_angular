@@ -15,10 +15,10 @@
     </ng-template>
 
     <custom-title [title]="product.title"></custom-title>
-    <div class="product-text">{{ product.description | chickenDescription }}</div>
+    <div class="product-text">{{ product.description | wordUpper:['томат', 'сыр','сос'] }}</div>
     <div class="product-action" #elem>
         <button id="no-touch" class="btn btn-add-to-cart" (click)="addProductToCart()">В корзину</button>
     </div>
-    <div>{{ product.datetime | date:'full' | uppercase}}</div>
+    <div>{{ product.datetime | date:'full' | uppercase }}</div>
 </div>
 <!--(click)="addToCart(product,orderElement)"-->
