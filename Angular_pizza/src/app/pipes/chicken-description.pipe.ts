@@ -5,8 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ChickenDescriptionPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: string, ...args: unknown[]): string {
+    return value.replace(/([Кк]ур(?:иц|ин|о)[а-я]+)/g,(match:string) =>{
+      return match.toUpperCase();
+    })
   }
 
 }
