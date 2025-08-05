@@ -3,38 +3,39 @@ import {TitleComponent} from "../title/title.component";
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 
 @Component({
-  selector: 'product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+    selector: 'product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss'],
 })
 
-export class ProductComponent  {
+export class ProductComponent {
 //Принимаем в дочернем что ушло от родительского
-  @Input() product: ProductType;
-  //Посылаем родителькому элементу
-  @Output() addToCartEvent: EventEmitter<string> = new EventEmitter<string>();
+    @Input() product: ProductType;
+    //Посылаем родителькому элементу
+    @Output() addToCartEvent: EventEmitter<string> = new EventEmitter<string>();
 
 //Добавляем декоратор
-  @ViewChild(TitleComponent)
-  private titleComponent!: TitleComponent;
+    @ViewChild(TitleComponent)
+    private titleComponent!: TitleComponent;
 //локально
-  @ViewChild('elem')
-  private elem!: ElementRef;
+    @ViewChild('elem')
+    private elem!: ElementRef;
 
-  constructor() {
-    this.product = {
-      image: '',
-      title: '',
-      description: '',
+    constructor() {
+        this.product = {
+            image: '',
+            title: '',
+            description: '',
+            datetime: '',
+        }
     }
-  }
 
-  // ngAfterViewInit() {
-  //   // console.log(this.elem);
-  // }
+    // ngAfterViewInit() {
+    //   // console.log(this.elem);
+    // }
 
-  addProductToCart() {
-    this.addToCartEvent.emit(this.titleComponent.toUpper());
-  }
+    addProductToCart() {
+        this.addToCartEvent.emit(this.titleComponent.toUpper());
+    }
 
 }

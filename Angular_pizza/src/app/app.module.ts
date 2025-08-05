@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductComponent } from './components/product/product.component';
 import { TitleComponent } from './components/title/title.component';
 import { CoolInputDirective } from './directivs/cool-input.directive';
+import { ChickenDescriptionPipe } from './pipes/chicken-description.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CoolInputDirective } from './directivs/cool-input.directive';
     FooterComponent,
     ProductComponent,
     TitleComponent,
-    CoolInputDirective
+    CoolInputDirective,
+    ChickenDescriptionPipe
   ],
   imports: [
     BrowserModule,
