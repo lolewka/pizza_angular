@@ -35,7 +35,7 @@ export class ProductComponent {
     // }
 
     addProductToCart() {
-        this.addToCartEvent.emit(this.titleComponent.toUpper());
+        this.addToCartEvent.emit(this.titleComponent.title);
     }
 
 }

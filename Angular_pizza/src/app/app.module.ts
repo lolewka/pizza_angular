@@ -11,6 +11,7 @@ import { TitleComponent } from './components/title/title.component';
 import { CoolInputDirective } from './directivs/cool-input.directive';
 import { ChickenDescriptionPipe } from './pipes/chicken-description.pipe';
 import { WordUpperPipe } from './pipes/word-upper.pipe';
+import { ChickenProductsPipe } from './pipes/chicken-products.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { WordUpperPipe } from './pipes/word-upper.pipe';
     TitleComponent,
     CoolInputDirective,
     ChickenDescriptionPipe,
-    WordUpperPipe
+    WordUpperPipe,
+    ChickenProductsPipe
   ],
   imports: [
     BrowserModule,
