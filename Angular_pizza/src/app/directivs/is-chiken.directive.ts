@@ -1,6 +1,7 @@
 import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 
 @Directive({
+  standalone: true,
   selector: '[isChiken]'
 })
 export class IsChikenDirective implements OnInit {
