@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {ProductType} from "../types/product.type";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProductService {
 
   constructor() {
   }
 
-  getProduct(): ProductType[] {
+  getProducts(): ProductType[] {
     //ajax
     return [
       {

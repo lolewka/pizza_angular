@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductType} from "./types/product.type";
 import {ProductService} from "./services/product.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {// по факту отсюда нужна делать запрос на бэкенда но так как у нас его нет, мы сделаем так
+export class AppComponent implements OnInit {// по факту отсюда нужна делать запрос на бэкенда но так как у нас его нет, мы сделаем так
   public products: ProductType[] = [];
 
   //Объект который хранинит данные с наших импутов
@@ -17,7 +17,11 @@ export class AppComponent {// по факту отсюда нужна делат
     phone: '',
   }
 
-  constructor(private productService:ProductService) {
+  constructor(private productService: ProductService) {
+  }
+
+  ngOnInit() {
+    this.products = this.productService.getProducts()
   }
 
   //Функция которая отвечает за скролинг к определенному компоненту
@@ -49,7 +53,7 @@ export class AppComponent {// по факту отсюда нужна делат
     alert('Спасибо за заказ! Ваш заказ будет доставлен в течении 24 часов.');
 
     //что бы поля стирались преопределим объект
-   this.formValues = {
+    this.formValues = {
       productTitle: '',
       address: '',
       phone: '',
