@@ -1,13 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductType} from "./types/product.type";
 import {ProductService} from "./services/product.service";
+import {CartService} from "./services/cart.service";
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {// по факту отсюда нужна делать запрос на бэкенда но так как у нас его нет, мы сделаем так
+export class AppComponent implements OnInit {
+  // по факту отсюда нужна делать запрос на бэкенда но так как у нас его нет, мы сделаем так
   public products: ProductType[] = [];
 
   //Объект который хранинит данные с наших импутов
@@ -17,7 +20,8 @@ export class AppComponent implements OnInit {// по факту отсюда н�
     phone: '',
   }
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              public cartService: CartService,) {
   }
 
   ngOnInit() {
@@ -33,6 +37,7 @@ export class AppComponent implements OnInit {// по факту отсюда н�
   public addToCart(product: ProductType, target: HTMLElement): void {
     this.scrollTo(target);
     this.formValues.productTitle = product.title;
+    this.cartService.count++
   }
 
 //Валидация формы
