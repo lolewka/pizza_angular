@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
-import {CartService} from "../../../services/cart.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -10,7 +8,7 @@ import {Router} from "@angular/router";
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -53,10 +51,10 @@ export class ProductsComponent implements OnInit {
   ];
 
   //Функция которая вызывает название продукта и подстовляет в форму
-  public addToCart(title: string): void {
-    this.cartService.product = title;
-    this.router.navigate(['/order',], {queryParams: {product: title}});
-    //logic
-  }
+  // public addToCart(title: string): void {
+  //   this.cartService.product = title;
+  //   this.router.navigate(['/order',], {queryParams: {product: title}});
+  //   //logic
+  // }
 
 }
