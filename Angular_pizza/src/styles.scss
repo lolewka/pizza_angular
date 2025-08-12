@@ -45,6 +45,12 @@ body {
   text-align: center;
 }
 
+.btn.btn-white {
+  background: transparent;
+  border: 1px solid #ffaf18;
+  color: #ffaf18;
+}
+
 /* 1024-1229*/
 @media screen and (max-width: 1229px) {
   .container {
@@ -207,7 +213,6 @@ body {
   left: 0;
 
 }
-
 
 
 /* 1024-1229*/

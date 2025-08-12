@@ -14,14 +14,11 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.cartService.product) {
-    //   this.formValues.productTitle = this.cartService.product;
+    // if (this.cartService.product-card) {
+    //   this.formValues.productTitle = this.cartService.product-card;
     // }
 
-    // this.activatedRoute.queryParams.subscribe((params) => {
-    //   if (params['product']) {
-    //     this.formValues.productTitle = params['product'];
-    //   }
+
     // })
 
     const productParam = this.activatedRoute.snapshot.queryParamMap.get('product');

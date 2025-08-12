@@ -12,7 +12,7 @@ import { MainComponent } from './components/pages/main/main.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { ProductsComponent } from './components/pages/products/products.component';
 import { OrderComponent } from './components/pages/order/order.component';
-import {ProductCardComponent} from "./components/common/product/product-card.component";
+import {ProductCardComponent} from "./components/common/product-card/product-card.component";
 import { ProductComponent } from './components/pages/product/product.component';
 
 @NgModule({
