@@ -3,12 +3,12 @@ import {TitleComponent} from "../title/title.component";
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 
 @Component({
-  selector: 'product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+  selector: 'product-card',
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.scss'],
 })
 
-export class ProductComponent  {
+export class ProductCardComponent {
 //Принимаем в дочернем что ушло от родительского
   @Input() product: ProductType;
   //Посылаем родителькому элементу
