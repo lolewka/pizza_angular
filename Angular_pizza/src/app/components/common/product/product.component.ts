@@ -1,4 +1,4 @@
-import {ProductType} from "../../types/product.type";
+import {ProductType} from "../../../types/product.type";
 import {TitleComponent} from "../title/title.component";
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 

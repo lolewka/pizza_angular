@@ -17,7 +17,8 @@
   <custom-title [title]="product.title"></custom-title>
   <div class="product-text">{{ product.description }}</div>
   <div class="product-action" #elem>
-    <button id="no-touch" class="btn btn-add-to-cart" (click)="addProductToCart()">В корзину</button>
+    <a id="no-touch" class="btn btn-add-to-cart" routerLink="/order" [queryParams]="{product:product.title}">
+      В корзину</a>
   </div>
 </div>
 <!--(click)="addToCart(product,orderElement)"-->

@@ -4,11 +4,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule} from "@angular/forms";
-import {HeaderComponent} from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ProductComponent } from './components/product/product.component';
-import { TitleComponent } from './components/title/title.component';
+import {HeaderComponent} from './components/common/header/header.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { ProductComponent } from './components/common/product/product.component';
+import { TitleComponent } from './components/common/title/title.component';
 import { CoolInputDirective } from './directivs/cool-input.directive';
+import { MainComponent } from './components/pages/main/main.component';
+import { AboutComponent } from './components/pages/about/about.component';
+import { ProductsComponent } from './components/pages/products/products.component';
+import { OrderComponent } from './components/pages/order/order.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { CoolInputDirective } from './directivs/cool-input.directive';
     FooterComponent,
     ProductComponent,
     TitleComponent,
-    CoolInputDirective
+    CoolInputDirective,
+    MainComponent,
+    AboutComponent,
+    ProductsComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +33,7 @@ import { CoolInputDirective } from './directivs/cool-input.directive';
     FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, HeaderComponent, FooterComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
