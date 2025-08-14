@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class MainComponent implements OnInit {
 
-  private observable: Observable<string>;
+  private observable: Observable<number>;
   // private promise: Promise<string>;
   constructor() {
     // this.promise = new Promise<string>((resolve) => {
@@ -18,21 +18,29 @@ export class MainComponent implements OnInit {
     //
     // });
     this.observable = new Observable((observer) => {
+      let count = 0;
+
+      setInterval(() => {
+        observer.next(count++);
+      }, 1000)
       setTimeout(() => {
-        observer.next('hello');
-      }, 2000)
-      setTimeout(() => {
-        observer.next('world');
-      }, 3000)
+        observer.error('world');
+      }, 5000)
     })
   }
 
   ngOnInit(): void {
-    this.observable.subscribe((param: string) => {
-      console.log(param);
+    this.observable.subscribe((param: number) => {
+      console.log('subscriber 1: ',param);
     })
     // this.promise.then((param: string) => {
     //   console.log(param);
     // })
+  }
+
+  test() {
+    this.observable.subscribe((param: number) => {
+      console.log('subscriber 2: ',param);
+    })
   }
 }
