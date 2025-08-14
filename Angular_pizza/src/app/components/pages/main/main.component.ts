@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 export class MainComponent implements OnInit {
 
   private observable: Observable<number>;
+
   // private promise: Promise<string>;
   constructor() {
     // this.promise = new Promise<string>((resolve) => {
@@ -24,23 +25,34 @@ export class MainComponent implements OnInit {
         observer.next(count++);
       }, 1000)
       setTimeout(() => {
+        observer.complete();
+      }, 4000)
+      setTimeout(() => {
         observer.error('world');
       }, 5000)
     })
   }
 
   ngOnInit(): void {
-    this.observable.subscribe((param: number) => {
-      console.log('subscriber 1: ',param);
-    })
-    // this.promise.then((param: string) => {
-    //   console.log(param);
-    // })
+    this.observable.subscribe(
+      {
+        next: (param: number) => {
+          console.log('subscriber 1: ', param);
+        },
+        error: (error: string) => {
+          console.log('ERROR!!' + error);
+        }
+      });
   }
+
+  // this.promise.then((param: string) => {
+  //   console.log(param);
+  // })
+
 
   test() {
     this.observable.subscribe((param: number) => {
-      console.log('subscriber 2: ',param);
+      console.log('subscriber 2: ', param);
     })
   }
 }

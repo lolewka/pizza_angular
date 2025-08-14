@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from "../../../services/cart.service";
 import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-order',
@@ -17,21 +18,22 @@ export class OrderComponent implements OnInit {
     // if (this.cartService.product-card) {
     //   this.formValues.productTitle = this.cartService.product-card;
     // }
-
-
     // })
-
     // const productParam = this.activatedRoute.snapshot.queryParamMap.get('product');
     // if (productParam) {
     //   this.formValues.productTitle = productParam;
     // }
-    this.activatedRoute.queryParams.subscribe((params) => {
+    this.subscription = this.activatedRoute.queryParams.subscribe((params) => {
       if (params['product']) {
         this.formValues.productTitle = params['product'];
       }
     });
   }
+  private subscription: Subscription | null = null;
+  test() {
+    this.subscription?.unsubscribe();
 
+  }
 
   //Объект который хранинит данные с наших импутов
   public formValues = {
@@ -65,5 +67,4 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  protected readonly test = module
 }
