@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from "../../../services/cart.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -8,7 +8,7 @@ import {Subscription} from "rxjs";
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit , OnDestroy {
 
   constructor(private cartService: CartService,
               private activatedRoute: ActivatedRoute,) {
@@ -30,9 +30,12 @@ export class OrderComponent implements OnInit {
     });
   }
   private subscription: Subscription | null = null;
-  test() {
-    this.subscription?.unsubscribe();
+  // test() {
+  //   this.subscription?.unsubscribe();
+  // }
 
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
   //Объект который хранинит данные с наших импутов

@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   private observable: Observable<number>;
 
@@ -18,23 +18,33 @@ export class MainComponent implements OnInit {
     //   }, 2000);
     //
     // });
+
     this.observable = new Observable((observer) => {
       let count = 0;
 
-      setInterval(() => {
+      const interval = setInterval(() => {
         observer.next(count++);
-      }, 1000)
-      setTimeout(() => {
+      }, 1000);
+      const timout1 = setTimeout(() => {
         observer.complete();
-      }, 4000)
-      setTimeout(() => {
+      }, 4000);
+      const timout2 = setTimeout(() => {
         observer.error('world');
-      }, 5000)
-    })
+      }, 5000);
+      return {
+        unsubscribe() {
+          clearInterval(interval);
+          clearTimeout(timout1);
+          clearTimeout(timout2);
+        }
+      }
+    });
   }
 
+  private subscription: Subscription | null = null;
+
   ngOnInit(): void {
-    this.observable.subscribe(
+    this.subscription = this.observable.subscribe(
       {
         next: (param: number) => {
           console.log('subscriber 1: ', param);
@@ -43,6 +53,10 @@ export class MainComponent implements OnInit {
           console.log('ERROR!!' + error);
         }
       });
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe()
   }
 
   // this.promise.then((param: string) => {
