@@ -21,11 +21,17 @@ export class OrderComponent implements OnInit {
 
     // })
 
-    const productParam = this.activatedRoute.snapshot.queryParamMap.get('product');
-    if (productParam) {
-      this.formValues.productTitle = productParam;
-    }
+    // const productParam = this.activatedRoute.snapshot.queryParamMap.get('product');
+    // if (productParam) {
+    //   this.formValues.productTitle = productParam;
+    // }
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['product']) {
+        this.formValues.productTitle = params['product'];
+      }
+    });
   }
+
 
   //Объект который хранинит данные с наших импутов
   public formValues = {
