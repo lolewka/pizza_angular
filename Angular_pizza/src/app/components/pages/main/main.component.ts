@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {from, map, Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main',
@@ -18,8 +18,10 @@ export class MainComponent implements OnInit, OnDestroy {
     //   }, 2000);
     //
     // });
+    // this.observable = from([1, 2, 3, 4, 5])
 
     this.observable = new Observable((observer) => {
+
       let count = 0;
 
       const interval = setInterval(() => {
@@ -44,15 +46,16 @@ export class MainComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
 
   ngOnInit(): void {
-    this.subscription = this.observable.subscribe(
-      {
-        next: (param: number) => {
-          console.log('subscriber 1: ', param);
-        },
-        error: (error: string) => {
-          console.log('ERROR!!' + error);
-        }
-      });
+    this.subscription = this.observable
+      .subscribe(
+        {
+          next: (param: number) => {
+            console.log('subscriber 1: ', param);
+          },
+          error: (error: string) => {
+            console.log('ERROR!!' + error);
+          }
+        });
   }
 
   ngOnDestroy() {
@@ -65,7 +68,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
   test() {
-    this.observable.subscribe((param: number) => {
+    this.observable
+      .pipe(
+        map((number) => {
+          return 'Число: ' + number;
+        })
+      )
+      .subscribe((param: string) => {
       console.log('subscriber 2: ', param);
     })
   }
