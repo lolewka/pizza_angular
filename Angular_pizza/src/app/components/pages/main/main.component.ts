@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {from, map, Observable, Subscription} from "rxjs";
+import {from, map, Observable, Subject, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main',
@@ -8,10 +8,21 @@ import {from, map, Observable, Subscription} from "rxjs";
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  private observable: Observable<number>;
+  // private observable: Observable<number>;
+  private subject: Subject<number>;
 
   // private promise: Promise<string>;
   constructor() {
+    this.subject = new Subject<number>();
+    let count = 0;
+    const interval = setInterval(() => {
+      this.subject.next(count++);
+    }, 1000);
+    const timout1 = setTimeout(() => {
+      this.subject.complete();
+    }, 4000);
+
+
     // this.promise = new Promise<string>((resolve) => {
     //   setTimeout(() => {
     //     resolve('hello');
@@ -20,33 +31,32 @@ export class MainComponent implements OnInit, OnDestroy {
     // });
     // this.observable = from([1, 2, 3, 4, 5])
 
-    this.observable = new Observable((observer) => {
-
-      let count = 0;
-
-      const interval = setInterval(() => {
-        observer.next(count++);
-      }, 1000);
-      const timout1 = setTimeout(() => {
-        observer.complete();
-      }, 4000);
-      const timout2 = setTimeout(() => {
-        observer.error('world');
-      }, 5000);
-      return {
-        unsubscribe() {
-          clearInterval(interval);
-          clearTimeout(timout1);
-          clearTimeout(timout2);
-        }
-      }
-    });
+    // this.observable = new Observable((observer) => {
+    //   let count = 0;
+    //
+    //   const interval = setInterval(() => {
+    //     observer.next(count++);
+    //   }, 1000);
+    //   const timout1 = setTimeout(() => {
+    //     observer.complete();
+    //   }, 4000);
+    //   const timout2 = setTimeout(() => {
+    //     observer.error('world');
+    //   }, 5000);
+    //   return {
+    //     unsubscribe() {
+    //       clearInterval(interval);
+    //       clearTimeout(timout1);
+    //       clearTimeout(timout2);
+    //     }
+    //   }
+    // });
   }
-
   private subscription: Subscription | null = null;
-
-  ngOnInit(): void {
-    this.subscription = this.observable
+  ngOnInit()
+    :
+    void {
+    this.subscription = this.subject
       .subscribe(
         {
           next: (param: number) => {
@@ -57,25 +67,21 @@ export class MainComponent implements OnInit, OnDestroy {
           }
         });
   }
-
   ngOnDestroy() {
     this.subscription?.unsubscribe()
   }
-
-  // this.promise.then((param: string) => {
-  //   console.log(param);
-  // })
-
-
+// this.promise.then((param: string) => {
+//   console.log(param);
+// })
   test() {
-    this.observable
+    this.subject
       .pipe(
         map((number) => {
           return 'Число: ' + number;
         })
       )
       .subscribe((param: string) => {
-      console.log('subscriber 2: ', param);
-    })
+        console.log('subscriber 2: ', param);
+      })
   }
 }
