@@ -12,7 +12,16 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, public CartService: CartService) {
   }
 
+  public loggedState: boolean = false;
+
+
   ngOnInit(): void {
+    this.authService.isLoggedSubject.subscribe((isLoggedIn: boolean) => {
+      this.loggedState = isLoggedIn;
+
+      //other logic
+      console.log('State has been changed.: ' + isLoggedIn)
+    })
   }
 
   login(): void {
