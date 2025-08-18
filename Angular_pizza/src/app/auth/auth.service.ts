@@ -25,6 +25,10 @@ export class AuthService {
 
   }
 
+  getToken()  {
+    return 'test'
+  }
+
   isLoggedIn(): boolean {
     return this.isLogged;
   }
