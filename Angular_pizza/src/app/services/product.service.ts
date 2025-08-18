@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProductType} from "../types/product.type";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {map, Observable, pipe, tap,} from "rxjs";
 
 @Injectable({
@@ -15,14 +15,19 @@ export class ProductService {
 
 
     getProducts(): Observable<ProductType[]> {
-        return this.http.get<{ data: ProductType[] }>('http://testologia.site/pizzas?extraField=1', {
-            observe: 'response'
+        let params = new HttpParams();
+        params = params.set('extraField', 1);
+        return this.http.get<{ data: ProductType[] }>('http://testologia.site/pizzas', {
+            headers: new HttpHeaders({
+                Authorization: `auth-token`
+            }),
+            params: params
         })
             .pipe(
                 tap(result => {
                     console.log(result)
                 }),
-                map((result) => (result.body ? result.body.data : [])),
+                map((result) => (result.data)),
             );
     }
 
