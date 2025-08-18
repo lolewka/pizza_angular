@@ -14,7 +14,9 @@ import { ProductsComponent } from './components/pages/products/products.componen
 import { OrderComponent } from './components/pages/order/order.component';
 import {ProductCardComponent} from "./components/common/product-card/product-card.component";
 import { ProductComponent } from './components/pages/product/product.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {ProductService} from "./services/product.service";
+import {AuthInterceptor} from "./auth/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,8 +37,16 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+
   ],
-  providers: [],
+  providers: [
+    ProductService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
