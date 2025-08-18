@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../../../services/product.service";
-import {map, tap} from "rxjs";
+import {catchError, map, tap} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -26,7 +26,10 @@ export class ProductsComponent implements OnInit {
         tap((result) => {
           console.log(result);
         }),
-        map((result) => (result.data))
+        map((result) => (result.data)),
+        catchError(error => {
+          throw new Error('omg');
+        })
       )
       // Что бы вызвать запрос
       .subscribe(
