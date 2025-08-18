@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../../../services/product.service";
-import {catchError, map, of, retry, tap} from "rxjs";
+import {catchError, map, of, retry, Subscription, tap} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,17 +10,22 @@ import {Router} from "@angular/router";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService, private http: HttpClient, private router: Router) {
   }
 
   //
-  products: ProductType[] = [];
 
+  private subscriptionGetProducts: Subscription | null = null;
+
+  products: ProductType[] = [];
+  ngOnDestroy() {
+    this.subscriptionGetProducts?.unsubscribe();
+  }
   ngOnInit(): void {
 //Делаем запрос
-    this.productService.getProducts()
+    this.subscriptionGetProducts = this.productService.getProducts()
       // Что бы вызвать запрос
       .subscribe(
         {
