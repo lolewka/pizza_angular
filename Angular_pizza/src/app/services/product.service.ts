@@ -15,23 +15,13 @@ export class ProductService {
 
 
     getProducts(): Observable<ProductType[]> {
-        let params = new HttpParams();
-        params = params.set('extraField', 1);
-        return this.http.get<{ data: ProductType[] }>('http://testologia.site/pizzas', {
-            headers: new HttpHeaders({
-                Authorization: `auth-token`
-            }),
-            params: params
-        })
-            .pipe(
-                tap(result => {
-                    console.log(result)
-                }),
-                map((result) => (result.data)),
-            );
+        return this.http.get<ProductType[]>('http://testologia.site/pizzas',)
+
     }
 
-    getProduct(id: number): ProductType | undefined {
-        return this.products.find(item => (item.id === id));
+    getProduct(id: number): Observable<ProductType> {
+        return this.http.get<ProductType>(`http://testologia.site/pizzas?id=${id}`);
+
+        // return this.products.find(item => (item.id === id));
     }
 }
