@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductType} from "../../../types/product.type";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../../../services/product.service";
-import {catchError, map, tap} from "rxjs";
+import {catchError, map, of, retry, tap} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -27,9 +27,11 @@ export class ProductsComponent implements OnInit {
           console.log(result);
         }),
         map((result) => (result.data)),
-        catchError(error => {
-          throw new Error('omg');
-        })
+        // catchError(error => {
+        //   return of([])
+        //   // throw new Error('omg');
+        // }),
+        retry(3)
       )
       // Что бы вызвать запрос
       .subscribe(
@@ -41,7 +43,6 @@ export class ProductsComponent implements OnInit {
             console.log(error);
             this.router.navigate(['/']);
           }
-
         })
   }
 
