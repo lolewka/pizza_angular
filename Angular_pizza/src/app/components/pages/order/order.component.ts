@@ -2,16 +2,17 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from "../../../services/cart.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit , OnDestroy {
+export class OrderComponent implements OnInit, OnDestroy {
 
   constructor(private cartService: CartService,
-              private activatedRoute: ActivatedRoute,) {
+              private activatedRoute: ActivatedRoute, private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -29,13 +30,16 @@ export class OrderComponent implements OnInit , OnDestroy {
       }
     });
   }
+
   private subscription: Subscription | null = null;
+  private subscriptionOrder: Subscription | null = null;
   // test() {
   //   this.subscription?.unsubscribe();
   // }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+    this.subscriptionOrder?.unsubscribe();
   }
 
   //Объект который хранинит данные с наших импутов
@@ -60,14 +64,27 @@ export class OrderComponent implements OnInit , OnDestroy {
       return;
     }
     //ajax....
-    alert('Спасибо за заказ! Ваш заказ будет доставлен в течении 24 часов.');
+    this.subscriptionOrder = this.productService.createOrder({
+      product: this.formValues.productTitle,
+      address: this.formValues.address,
+      phone: this.formValues.phone,
+    })
+      .subscribe(response => {
+        if (response.success && !response.message) {
+          alert('Спасибо за заказ! Ваш заказ будет доставлен в течении 24 часов.');
+          this.formValues = {
+            productTitle: '',
+            address: '',
+            phone: '',
+          }
+        } else {
+          alert('Ошибка');
+        }
+      })
+
 
     //что бы поля стирались преопределим объект
-    this.formValues = {
-      productTitle: '',
-      address: '',
-      phone: '',
-    }
+
   }
 
 }

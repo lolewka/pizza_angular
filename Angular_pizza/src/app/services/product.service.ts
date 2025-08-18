@@ -24,4 +24,8 @@ export class ProductService {
 
         // return this.products.find(item => (item.id === id));
     }
+
+    createOrder(data: { product: string, address: string, phone: string }) {
+        return this.http.post<{ success: boolean, message?: string }>(`http://testologia.site/order-pizza`, data);
+    }
 }
