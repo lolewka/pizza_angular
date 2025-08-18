@@ -20,19 +20,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
 //Делаем запрос
-    this.http.get<{ data: ProductType[] }>('http://testologiaa.site/pizzas?extraField=1')
-      //Обрабатываем запрос по ключу
-      .pipe(
-        tap((result) => {
-          console.log(result);
-        }),
-        map((result) => (result.data)),
-        // catchError(error => {
-        //   return of([])
-        //   // throw new Error('omg');
-        // }),
-        retry(3)
-      )
+    this.productService.getProducts()
       // Что бы вызвать запрос
       .subscribe(
         {
