@@ -7,7 +7,6 @@ import {FormsModule} from "@angular/forms";
 import {HeaderComponent} from './components/common/header/header.component';
 import {FooterComponent} from './components/common/footer/footer.component';
 import {CoolInputDirective} from './directivs/cool-input.directive';
-import {OrderComponent} from './components/pages/order/order.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
 import {ProductsModule} from "./components/products.module";
@@ -19,7 +18,6 @@ import {CoreModule} from "./core/core.module";
     HeaderComponent,
     FooterComponent,
     CoolInputDirective,
-    OrderComponent,
   ],
   imports: [
     BrowserModule,
