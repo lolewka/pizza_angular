@@ -9,8 +9,10 @@ import {FooterComponent} from './components/common/footer/footer.component';
 import {CoolInputDirective} from './directivs/cool-input.directive';
 import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
-import {ProductsModule} from "./components/products.module";
 import {CoreModule} from "./core/core.module";
+import {ProductsModule} from "./views/products/products.module";
+import {HomeModule} from "./views/home/home.module";
+import {OrderModule} from "./views/order/order.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {CoreModule} from "./core/core.module";
     FormsModule,
     HttpClientModule,
     ProductsModule,
+    HomeModule,
     CoreModule,
+    OrderModule,
     AppRoutingModule,
   ],
   providers: [
