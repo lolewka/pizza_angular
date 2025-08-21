@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FooterComponent} from "./components/footer/footer.component";
-import {HeaderComponent} from "./components/header/header.component";
 import {ProductCardComponent} from "./components/product-card/product-card.component";
 import {TitleComponent} from "./components/title/title.component";
 import {CoolInputDirective} from "./directivs/cool-input.directive";
+import {RouterModule} from "@angular/router";
 
 
 
 @NgModule({
   declarations: [
-    FooterComponent,
-    HeaderComponent,
     ProductCardComponent,
     TitleComponent,
     CoolInputDirective,
@@ -20,6 +17,12 @@ import {CoolInputDirective} from "./directivs/cool-input.directive";
   ],
   imports: [
     CommonModule,
+    RouterModule,
+  ],
+  exports: [
+    ProductCardComponent,
+    TitleComponent,
+    CoolInputDirective,
   ]
 })
 export class SharedModule { }

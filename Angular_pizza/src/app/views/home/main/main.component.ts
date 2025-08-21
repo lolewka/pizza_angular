@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {from, map, Observable, Subject, Subscription} from "rxjs";
+import {map, Subject, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main',

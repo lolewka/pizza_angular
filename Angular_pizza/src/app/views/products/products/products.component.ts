@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductType} from "../../../types/product.type";
+
 import {HttpClient} from "@angular/common/http";
-import {ProductService} from "../../../services/product.service";
+
 import {catchError, map, of, retry, Subscription, tap} from "rxjs";
 import {Router} from "@angular/router";
+import { ProductService } from 'src/app/shared/services/product.service';
+import { ProductType } from 'src/types/product.type';
 
 @Component({
   selector: 'app-products',

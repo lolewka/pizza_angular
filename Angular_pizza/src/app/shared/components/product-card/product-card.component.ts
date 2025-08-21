@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from "@angular/core";
-import {ProductService} from "../../../services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {TitleComponent} from "../title/title.component";
+import { ProductService } from "../../services/product.service";
 
 @Component({
   selector: 'product-card',
@@ -22,7 +22,8 @@ export class ProductCardComponent {
   @ViewChild('elem')
   private elem!: ElementRef;
 
-  constructor(publiccartProductService: ProductService) {
+  constructor(public cartProductService: ProductService ) {
+
     this.product = {
       id: 0,
       image: '',
