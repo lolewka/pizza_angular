@@ -20,12 +20,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private subscriptionGetProducts: Subscription | null = null;
 
   products: ProductType[] = [];
+  loading: boolean = false;
+
+
   ngOnDestroy() {
     this.subscriptionGetProducts?.unsubscribe();
   }
+
   ngOnInit(): void {
 //Делаем запрос
+    this.loading = true;
     this.subscriptionGetProducts = this.productService.getProducts()
+      .pipe(
+        tap(() => {
+          this.loading = false;
+        })
+      )
       // Что бы вызвать запрос
       .subscribe(
         {
