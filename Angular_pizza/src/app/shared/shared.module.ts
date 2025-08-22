@@ -4,6 +4,7 @@ import {ProductCardComponent} from "./components/product-card/product-card.compo
 import {TitleComponent} from "./components/title/title.component";
 import {CoolInputDirective} from "./directivs/cool-input.directive";
 import {RouterModule} from "@angular/router";
+import { PopupComponent } from './components/popup/popup.component';
 
 
 
@@ -12,6 +13,7 @@ import {RouterModule} from "@angular/router";
     ProductCardComponent,
     TitleComponent,
     CoolInputDirective,
+    PopupComponent,
     // IsChikenDirective,
 
   ],
@@ -23,6 +25,7 @@ import {RouterModule} from "@angular/router";
     ProductCardComponent,
     TitleComponent,
     CoolInputDirective,
+    PopupComponent,
   ]
 })
 export class SharedModule { }

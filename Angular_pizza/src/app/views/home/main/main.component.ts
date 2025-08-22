@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {map, Subject, Subscription} from "rxjs";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {PopupComponent} from "../../../shared/components/popup/popup.component";
 
 @Component({
   selector: 'app-main',
@@ -9,12 +10,11 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 
 export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
-
+  @ViewChild(PopupComponent)
+  private popupComponent!: PopupComponent;
   // private observable: Observable<number>;
   private subject: Subject<number>;
 
-  @ViewChild('popup')
-  popup!: TemplateRef<ElementRef>
 
   // private promise: Promise<string>;
   constructor(private modalService: NgbModal) {
@@ -61,7 +61,8 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscription: Subscription | null = null;
 
   ngAfterViewInit() {
-    this.modalService.open(this.popup, {})
+    this.popupComponent.open();
+    // this.modalService.open(this.popup, {})
   }
 
   ngOnInit(): void {
