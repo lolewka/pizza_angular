@@ -1,18 +1,23 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {map, Subject, Subscription} from "rxjs";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy {
+
+export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // private observable: Observable<number>;
   private subject: Subject<number>;
 
+  @ViewChild('popup')
+  popup!: TemplateRef<ElementRef>
+
   // private promise: Promise<string>;
-  constructor() {
+  constructor(private modalService: NgbModal) {
     this.subject = new Subject<number>();
     let count = 0;
     const interval = setInterval(() => {
@@ -52,10 +57,14 @@ export class MainComponent implements OnInit, OnDestroy {
     //   }
     // });
   }
+
   private subscription: Subscription | null = null;
-  ngOnInit()
-    :
-    void {
+
+  ngAfterViewInit() {
+    this.modalService.open(this.popup, {})
+  }
+
+  ngOnInit(): void {
     this.subscription = this.subject
       .subscribe(
         {
@@ -66,10 +75,14 @@ export class MainComponent implements OnInit, OnDestroy {
             console.log('ERROR!!' + error);
           }
         });
+    // const myModalAlternative = new bootstrap.Modal('#myModal', {})
+    // myModalAlternative.show();
   }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe()
   }
+
 // this.promise.then((param: string) => {
 //   console.log(param);
 // })
