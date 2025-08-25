@@ -6,6 +6,7 @@ import {OrderComponent} from "./order.component";
 import {SharedModule} from "../../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {InputTextModule} from "primeng/inputtext";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {FormsModule} from "@angular/forms";
     SharedModule,
     FormsModule,
     RouterModule,
+    InputTextModule,
     OrderRoutingModule,
   ],
 
