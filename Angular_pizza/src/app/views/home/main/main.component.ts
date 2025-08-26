@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, TemplateRef, Vi
 import {map, Subject, Subscription} from "rxjs";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PopupComponent} from "../../../shared/components/popup/popup.component";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-main',
@@ -66,6 +67,9 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    //выведим то что находится в файле enviroment
+    console.log(environment.production)
+
     this.subscription = this.subject
       .subscribe(
         {
